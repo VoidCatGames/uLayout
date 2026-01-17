@@ -805,6 +805,7 @@ namespace Poke.UI
                         index = i,
                         size = rt.rect.size,
                         enabled = rt.gameObject.activeInHierarchy,
+                        ignoreLayout = li.IgnoreLayout,
                     }
                 );
             }
