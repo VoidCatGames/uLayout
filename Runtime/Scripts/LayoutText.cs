@@ -77,7 +77,7 @@ namespace Poke.UI {
             
             // X Pass
             if(fitX) {
-                _rect.sizeDelta = _rect.sizeDelta.With(size.x);
+                _rect.sizeDelta = _rect.sizeDelta.With(x: Mathf.RoundToInt(size.x));
             }
             
             // Y Pass
@@ -87,7 +87,7 @@ namespace Poke.UI {
                     height += textInfo.lineInfo[i].lineHeight;
                 }
                 size.y = height;
-                _rect.sizeDelta = _rect.sizeDelta.With(y: size.y);
+                _rect.sizeDelta = _rect.sizeDelta.With(y: Mathf.RoundToInt(size.y));
             }
 
             _updateMesh = true;

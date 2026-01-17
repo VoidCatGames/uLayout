@@ -17,7 +17,7 @@ using UnityEngine;
 namespace Poke.UI
 {
     [
-        ExecuteAlways,
+        //ExecuteAlways,
         RequireComponent(typeof(RectTransform))
     ]
     public class LayoutItem : MonoBehaviour
@@ -53,6 +53,10 @@ namespace Poke.UI
         }
 
         protected virtual void Awake() {
+            // #if UNITY_EDITOR
+            // ValidatePrefabStage();
+            // #endif
+            
             _rect = GetComponent<RectTransform>();
             
             // parent will always exist EXCEPT for in prefab editing
@@ -94,5 +98,29 @@ namespace Poke.UI
                 
             }
         }
+        
+        // #if UNITY_EDITOR
+        // private void ValidatePrefabStage() {
+        //     var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
+        //     if(prefabStage == null)
+        //         return;
+        //
+        //     LayoutRoot lr = gameObject.GetComponentInParent<LayoutRoot>(true);
+        //     if(lr != null)
+        //         return;
+        //
+        //     // This way of getting to root is necessary since prefabContentsRoot and GetRootGameObjects aren't available at this point
+        //     Transform topmostTransform = gameObject.transform;
+        //     while (topmostTransform.parent != null)
+        //         topmostTransform = topmostTransform.parent;
+        //
+        //     GameObject layoutRootObject = new GameObject("LayoutRoot (Editor)");
+        //     layoutRootObject.hideFlags = HideFlags.DontSaveInEditor;
+        //     layoutRootObject.AddComponent<LayoutRoot>();
+        //
+        //     UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(layoutRootObject, prefabStage.scene);
+        //     topmostTransform.SetParent(layoutRootObject.transform, false);
+        // }
+        // #endif
     }
 }
