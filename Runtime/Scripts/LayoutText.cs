@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2025 Alex Howe
+    Copyright (c) 2026 Alex Howe
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -38,15 +38,13 @@ namespace Poke.UI {
         protected override void OnEnable() {
             base.OnEnable();
             _text.OnPreRenderText += Resize;
+            
+            Resize(_text.textInfo);
         }
 
         protected override void OnDisable() {
             base.OnDisable();
             _text.OnPreRenderText -= Resize;
-        }
-
-        public void Start() {
-            Resize(_text.textInfo);
         }
 
         private void LateUpdate() {
@@ -86,8 +84,7 @@ namespace Poke.UI {
             if(fitY) {
                 float height = 0;
                 for(int i = 0; i < textInfo.lineCount; i++) {
-                    float lineHeight = textInfo.lineInfo[i].lineHeight;
-                    height += lineHeight;
+                    height += textInfo.lineInfo[i].lineHeight;
                 }
                 size.y = height;
                 _rect.sizeDelta = _rect.sizeDelta.With(y: size.y);

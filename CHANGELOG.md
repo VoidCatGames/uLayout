@@ -1,4 +1,6 @@
-﻿## [1.4.2] - 2025-12-20
+﻿## [1.5.0] - ???
+
+## [1.4.2] - 2025-12-20
 
 ### Fixed
 - check if `Layout` has parent rect (for prefab editing)
