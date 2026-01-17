@@ -89,11 +89,11 @@ namespace Poke.UI
                 // only update size if parent size has changed
                 if(m_sizing.x == SizingMode.Grow && !Mathf.Approximately(_parentRect.rect.size.x, _parentSize.x)) {
                     _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _parentRect.rect.size.x);
-                    _parentSize = _parentSize.With(x: _parentRect.rect.size.x);
+                    _parentSize = _parentSize.SetX(_parentRect.rect.size.x);
                 }
                 if(m_sizing.y == SizingMode.Grow && !Mathf.Approximately(_parentRect.rect.size.y, _parentSize.y)) {
                     _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _parentRect.rect.size.y);
-                    _parentSize = _parentSize.With(y: _parentRect.rect.size.y);
+                    _parentSize = _parentSize.SetY(_parentRect.rect.size.y);
                 }
                 
             }

@@ -166,11 +166,11 @@ namespace Poke.UI
 
                 // check if item changed size this frame
                 if(!(li && li.SizeMode.x == SizingMode.Grow) && !Mathf.Approximately(rect.rect.size.x, c.size.x)) {
-                    c.size = c.size.With(x: rect.rect.size.x); 
+                    c.size = c.size.SetX(rect.rect.size.x); 
                     layoutChanged = true;
                 }
                 if(!(li && li.SizeMode.y == SizingMode.Grow) && !Mathf.Approximately(rect.rect.size.y, c.size.y)) {
-                    c.size = c.size.With(y: rect.rect.size.y);
+                    c.size = c.size.SetY(rect.rect.size.y);
                     layoutChanged = true;
                 }
             }
@@ -205,14 +205,14 @@ namespace Poke.UI
         }
 
         private void SetAnchorPivotX(RectTransform rt, float x) {
-            rt.anchorMin = rt.anchorMin.With(x: x);
-            rt.anchorMax = rt.anchorMax.With(x: x);
-            rt.pivot = rt.pivot.With(x: x);
+            rt.anchorMin = rt.anchorMin.SetX(x);
+            rt.anchorMax = rt.anchorMax.SetX(x);
+            rt.pivot = rt.pivot.SetX(x);
         }
         private void SetAnchorPivotY(RectTransform rt, float y) {
-            rt.anchorMin = rt.anchorMin.With(y: y);
-            rt.anchorMax = rt.anchorMax.With(y: y);
-            rt.pivot = rt.pivot.With(y: y);
+            rt.anchorMin = rt.anchorMin.SetY(y);
+            rt.anchorMax = rt.anchorMax.SetY(y);
+            rt.pivot = rt.pivot.SetY(y);
         }
         
         #region LAYOUT PASSES
@@ -414,7 +414,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 0);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset);
                                 primaryOffset += rt.sizeDelta.x + m_innerSpacing;
                             }
                             break;
@@ -429,7 +429,7 @@ namespace Poke.UI
                                 SetAnchorPivotX(rt, 0.5f);
 
                                 primaryOffset += rt.sizeDelta.x / 2;
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset + m_padding.left);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset + m_padding.left);
                                 primaryOffset += rt.sizeDelta.x / 2 + m_innerSpacing;
                             }
                             break;
@@ -444,7 +444,7 @@ namespace Poke.UI
                                 SetAnchorPivotX(rt, 1);
 
                                 primaryOffset += rt.sizeDelta.x;
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset);
                                 primaryOffset += m_innerSpacing;
                             }
                             break;
@@ -465,7 +465,7 @@ namespace Poke.UI
                                 if(index != 0) {
                                     primaryOffset += spacing;
                                 }
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset);
                                 primaryOffset += rt.sizeDelta.x;
                                 index++;
                             }
@@ -486,7 +486,7 @@ namespace Poke.UI
                                 SetAnchorPivotX(rt, 0);
 
                                 primaryOffset -= rt.sizeDelta.x + m_innerSpacing;
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset);
                             }
                             break;
                         case Justification.Center:
@@ -500,7 +500,7 @@ namespace Poke.UI
                                 SetAnchorPivotX(rt, 0.5f);
 
                                 primaryOffset -= rt.sizeDelta.x / 2;
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: primaryOffset - m_padding.right);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(primaryOffset - m_padding.right);
                                 primaryOffset -= rt.sizeDelta.x / 2 + m_innerSpacing;
                             }
                             break;
@@ -514,7 +514,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 1);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: -primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(-primaryOffset);
                                 primaryOffset += rt.sizeDelta.x + m_innerSpacing;
                             }
                             break;
@@ -533,7 +533,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 1);
                                 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: -primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(-primaryOffset);
                                 primaryOffset += rt.sizeDelta.x + spacing;
                             }
                             break;
@@ -552,7 +552,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 1);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset);
                                 primaryOffset -= rt.sizeDelta.y + m_innerSpacing;
                             }
                             break;
@@ -567,7 +567,7 @@ namespace Poke.UI
                                 SetAnchorPivotY(rt, 0.5f);
 
                                 primaryOffset -= rt.sizeDelta.y / 2;
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset - m_padding.top);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset - m_padding.top);
                                 primaryOffset -= rt.sizeDelta.y / 2 + m_innerSpacing;
                             }
                             break;
@@ -582,7 +582,7 @@ namespace Poke.UI
                                 SetAnchorPivotY(rt, 0);
 
                                 primaryOffset -= rt.sizeDelta.y;
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset - m_padding.top);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset - m_padding.top);
                                 primaryOffset -= m_innerSpacing;
                             }
                             break;
@@ -603,7 +603,7 @@ namespace Poke.UI
                                 if(index != 0) {
                                     primaryOffset += spacing;
                                 }
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: -primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(-primaryOffset);
                                 primaryOffset += rt.sizeDelta.y;
 
                                 index++;
@@ -625,7 +625,7 @@ namespace Poke.UI
                                 SetAnchorPivotY(rt, 1);
 
                                 primaryOffset += rt.sizeDelta.y;
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset);
                                 primaryOffset += m_innerSpacing;
                             }
                             break;
@@ -636,7 +636,7 @@ namespace Poke.UI
                                 SetAnchorPivotY(rt, 0.5f);
 
                                 primaryOffset += rt.sizeDelta.y / 2;
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset - m_padding.top);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset - m_padding.top);
                                 primaryOffset += rt.sizeDelta.y / 2 + m_innerSpacing;
                             }
                             break;
@@ -650,7 +650,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 0);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset);
                                 primaryOffset += rt.sizeDelta.y + m_innerSpacing;
                             }
                             break;
@@ -669,7 +669,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 0);
                                 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: primaryOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(primaryOffset);
                                 primaryOffset += rt.sizeDelta.y + spacing;
                             }
                             break;
@@ -695,7 +695,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 1);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: -crossOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(-crossOffset);
                             }
                             break;
                         case Alignment.Center:
@@ -706,7 +706,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 0.5f);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: m_padding.bottom/2 - m_padding.top/2);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(m_padding.bottom/2 - m_padding.top/2);
                             }
                             break;
                         case Alignment.End:
@@ -719,7 +719,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotY(rt, 0);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(y: crossOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetY(crossOffset);
                             }
                             break;
                     }
@@ -739,7 +739,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 0);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: crossOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(crossOffset);
                             }
                             break;
                         case Alignment.Center:
@@ -750,7 +750,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 0.5f);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: m_padding.left/2 - m_padding.right/2);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(m_padding.left/2 - m_padding.right/2);
                             }
                             break;
                         case Alignment.End:
@@ -763,7 +763,7 @@ namespace Poke.UI
                                 
                                 SetAnchorPivotX(rt, 1);
 
-                                rt.anchoredPosition = rt.anchoredPosition.With(x: -crossOffset);
+                                rt.anchoredPosition = rt.anchoredPosition.SetX(-crossOffset);
                             }
                             break;
                     }
