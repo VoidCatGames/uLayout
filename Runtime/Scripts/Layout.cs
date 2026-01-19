@@ -28,33 +28,32 @@ namespace Poke.UI
         public event Action OnLayoutChanged;
         
         [Header("Layout")]
-        [SerializeField] private Margins m_padding;
-        [SerializeField] private LayoutDirection m_direction;
-        [SerializeField] private Justification m_justifyContent;
-        [SerializeField] private Alignment m_alignContent;
-        [SerializeField] private float m_innerSpacing;
+        [SerializeField] private Margins            m_padding;
+        [SerializeField] private LayoutDirection    m_direction;
+        [SerializeField] private Justification      m_justifyContent;
+        [SerializeField] private Alignment          m_alignContent;
+        [SerializeField] private float              m_innerSpacing;
 
-        public int ChildCount => _children?.Count ?? 0;
-        public int Depth => _depth;
-        public int GrowChildCount => _growChildren.Count;
+        public int ChildCount =>            _children?.Count ?? 0;
+        public int Depth =>                 _depth;
+        public int GrowChildCount =>        _growChildren.Count;
         public LayoutDirection Direction => m_direction;
-        public bool NeedsRefresh => _dirty;
+        public bool NeedsRefresh =>         _dirty;
 
         private readonly int MAX_DEPTH = 100;
 
-        private readonly Vector3[] _rectCorners = new Vector3[4];
-        private DrivenRectTransformTracker _rectTracker;
-        private LayoutRoot _root;
-        private Dictionary<RectTransform, ChildInfo> _children = new();
-        private Vector2 _contentSize;
-        private int _depth;
-        private LayoutItem[] _layoutItems;
-        private List<LayoutItem> _growChildren;
-        private Vector2Int _growChildCount;
-        private bool _dirty;
-        private int _ignoreCount;
-        
-        private Vector2 _lastSize;
+        private Dictionary<RectTransform, ChildInfo>    _children = new();
+        private Vector2                                 _contentSize;
+        private int                                     _depth;
+        private bool                                    _dirty;
+        private Vector2Int                              _growChildCount;
+        private List<LayoutItem>                        _growChildren;
+        private int                                     _ignoreCount;
+        private Vector2                                 _lastSize;
+        private LayoutItem[]                            _layoutItems;
+        private readonly Vector3[]                      _rectCorners = new Vector3[4];
+        private DrivenRectTransformTracker              _rectTracker;
+        private LayoutRoot                              _root;
 
         #region TypeDef
         public enum Justification

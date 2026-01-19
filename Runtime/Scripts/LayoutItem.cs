@@ -98,7 +98,11 @@ namespace Poke.UI
                 
             }
         }
-        
+
+        private void OnValidate() {
+            Awake();
+        }
+
         // #if UNITY_EDITOR
         // private void ValidatePrefabStage() {
         //     var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
