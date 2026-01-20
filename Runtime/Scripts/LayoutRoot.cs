@@ -17,16 +17,21 @@ using UnityEngine;
 namespace Poke.UI
 {
     [
-        ExecuteAlways,
+        //ExecuteAlways,
         RequireComponent(typeof(RectTransform))
     ]
     public class LayoutRoot : MonoBehaviour
     {
+        [SerializeField] private bool m_log;
+        
         private readonly SortedBucket<Layout, int, Layout> _layouts = new (l => l, l => l.GetInstanceID());
         private readonly Stack<Layout> _reverse = new ();
         private bool _dirty;
 
+        private int _tick;
+
         private void Start() {
+            _tick = 0;
             UpdateLayout();
         }
 
@@ -35,16 +40,22 @@ namespace Poke.UI
         }
         
         public void LateUpdate() {
+            print($"[Root] tick {_tick}");
+            
             if(_dirty) {
                 UpdateLayout();
             }
+            
+            _tick++;
         }
 
         public void UpdateLayout() {
+            if(m_log) Debug.Log($"[Root]: Update Layout ({Time.unscaledTime:f5})");
+            
             _reverse.Clear();
                 
             // fit sizing pass (0)
-            //Debug.Log($"[Root]: Fit Size Pass ({Time.unscaledTime:f5})");
+            if(m_log) Debug.Log($"[Root]: Fit Size Pass ({Time.unscaledTime:f5})");
             foreach(Layout l in _layouts) {
                 if(l.NeedsRefresh) {
                     l.ComputeFitSize();
@@ -53,7 +64,7 @@ namespace Poke.UI
             }
 
             // grow sizing pass (1)
-            //Debug.Log($"[Root]: Grow Size Pass ({Time.unscaledTime:f5})");
+            if(m_log) Debug.Log($"[Root]: Grow Size Pass ({Time.unscaledTime:f5})");
             foreach(Layout l in _layouts) {
                 if(l.NeedsRefresh) {
                     l.GrowChildren();
@@ -61,7 +72,7 @@ namespace Poke.UI
             }
                 
             // layout pass (2)
-            //Debug.Log($"[Root]: Layout Pass ({Time.unscaledTime:f5})");
+            if(m_log) Debug.Log($"[Root]: Layout Pass ({Time.unscaledTime:f5})");
             foreach(Layout l in _reverse) {
                 l.ComputeLayout();
             }

@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Poke.UI {
     [
-        ExecuteAlways,
+        //ExecuteAlways,
         RequireComponent(typeof(TMP_Text))
     ]
     public class LayoutText : LayoutItem
@@ -26,7 +26,6 @@ namespace Poke.UI {
         
         private TMP_Text _text;
         private DrivenRectTransformTracker _rectTracker;
-        private bool _updateMesh;
         
         protected override void Awake() {
             base.Awake();
@@ -36,10 +35,10 @@ namespace Poke.UI {
         }
 
         protected override void OnEnable() {
-            base.OnEnable();
             _text.OnPreRenderText += Resize;
+            _text.ForceMeshUpdate(forceTextReparsing: true);
             
-            Resize(_text.textInfo);
+            base.OnEnable();
         }
 
         protected override void OnDisable() {
@@ -47,18 +46,11 @@ namespace Poke.UI {
             _text.OnPreRenderText -= Resize;
         }
 
-        private void LateUpdate() {
-            if(_updateMesh) {
-                _text.ForceMeshUpdate();
-                _updateMesh = false;
-            }
-        }
-
         private void Resize(TMP_TextInfo textInfo) {
             _text.textWrappingMode = m_sizing.x == SizingMode.Grow ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
 
-            bool fitX = m_sizing.x == SizingMode.FitContent && m_sizing.x != SizingMode.Grow;
-            bool fitY = m_sizing.y == SizingMode.FitContent && m_sizing.y != SizingMode.Grow;
+            bool fitX = m_sizing.x == SizingMode.FitContent;
+            bool fitY = m_sizing.y == SizingMode.FitContent;
             
             _rectTracker.Clear();
             if(fitX)
@@ -77,20 +69,22 @@ namespace Poke.UI {
             
             // X Pass
             if(fitX) {
-                _rect.sizeDelta = _rect.sizeDelta.SetX(size.x);
+                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
             }
             
             // Y Pass
             if(fitY) {
                 float height = 0;
+                //Debug.Log($"[LT:{gameObject.name}] line count: {textInfo.lineCount}");
                 for(int i = 0; i < textInfo.lineCount; i++) {
                     height += textInfo.lineInfo[i].lineHeight;
                 }
                 size.y = height;
-                _rect.sizeDelta = _rect.sizeDelta.SetY(size.y);
+                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
             }
+            
+            //Debug.Log($"[LT:{gameObject.name}] {_rect.rect.size:f3}");
 
-            _updateMesh = true;
         }
     }
 }
