@@ -19,7 +19,11 @@ namespace Poke.UI
 {
     public static class LayoutEditorUtil
     {
+#if UNITY_6000_3_OR_NEWER
+        [MenuItem("GameObject/UI (Canvas)/Layout/Layout", false, 9)]
+#else
         [MenuItem("GameObject/UI/Layout/Layout", false, 9)]
+#endif
         public static void CreateLayoutObject(MenuCommand command) {
             GameObject g = new GameObject("Layout");
             GameObjectUtility.SetParentAndAlign(g, command.context as GameObject);
@@ -31,7 +35,11 @@ namespace Poke.UI
             Selection.activeObject = g;
         }
         
+#if UNITY_6000_3_OR_NEWER
+        [MenuItem("GameObject/UI (Canvas)/Layout/Layout Text", false, 10)]
+#else
         [MenuItem("GameObject/UI/Layout/Layout Text", false, 10)]
+#endif
         public static void CreateLayoutTextObject(MenuCommand command) {
             GameObject g = new GameObject("LayoutText");
             GameObjectUtility.SetParentAndAlign(g, command.context as GameObject);
@@ -46,7 +54,11 @@ namespace Poke.UI
             Selection.activeObject = g;
         }
         
+#if UNITY_6000_3_OR_NEWER
+        [MenuItem("GameObject/UI (Canvas)/Layout/Layout Item", false, 11)]
+#else
         [MenuItem("GameObject/UI/Layout/Layout Item", false, 11)]
+#endif
         public static void CreateLayoutItemObject(MenuCommand command) {
             GameObject g = new GameObject("LayoutItem");
             GameObjectUtility.SetParentAndAlign(g, command.context as GameObject);
@@ -58,7 +70,11 @@ namespace Poke.UI
             Selection.activeObject = g;
         }
         
+#if UNITY_6000_3_OR_NEWER
+        [MenuItem("GameObject/UI (Canvas)/Layout/Layout Root", false, 12)]
+#else
         [MenuItem("GameObject/UI/Layout/Layout Root", false, 12)]
+#endif
         public static void CreateLayoutRootObject(MenuCommand command) {
             GameObject g = new GameObject("LayoutRoot");
             GameObjectUtility.SetParentAndAlign(g, command.context as GameObject);

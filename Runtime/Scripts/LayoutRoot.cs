@@ -17,7 +17,7 @@ using UnityEngine;
 namespace Poke.UI
 {
     [
-        //ExecuteAlways,
+        ExecuteAlways,
         RequireComponent(typeof(RectTransform))
     ]
     public class LayoutRoot : MonoBehaviour

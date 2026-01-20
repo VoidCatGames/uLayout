@@ -15,10 +15,7 @@ using TMPro;
 using UnityEngine;
 
 namespace Poke.UI {
-    [
-        //ExecuteAlways,
-        RequireComponent(typeof(TMP_Text))
-    ]
+    [RequireComponent(typeof(TMP_Text))]
     public class LayoutText : LayoutItem
     {
         [Header("Text")]

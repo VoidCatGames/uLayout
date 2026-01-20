@@ -133,9 +133,9 @@ namespace Poke.UI
 
         public override void Update() {
             base.Update();
-            bool layoutChanged = false;
+            bool layoutChanged = _dirty;
 
-            if(!_dirty) {
+            if(!layoutChanged) {
                 // check if the container changed this frame
                 if(!Mathf.Approximately(_lastSize.x, _rect.rect.size.x) || !Mathf.Approximately(_lastSize.y, _rect.rect.size.y)) {
                     layoutChanged = true;
@@ -826,6 +826,8 @@ namespace Poke.UI
                     }
                 );
             }
+
+            _dirty = true;
         }
     }
 }
