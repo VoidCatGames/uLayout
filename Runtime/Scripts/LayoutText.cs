@@ -23,6 +23,7 @@ namespace Poke.UI {
         
         private TMP_Text _text;
         private DrivenRectTransformTracker _rectTracker;
+        private int _strLength;
         
         protected override void Awake() {
             base.Awake();
@@ -34,6 +35,8 @@ namespace Poke.UI {
         protected override void OnEnable() {
             _text.OnPreRenderText += Resize;
             _text.ForceMeshUpdate(forceTextReparsing: true);
+
+            _strLength = _text.textInfo.characterCount;
             
             base.OnEnable();
         }
@@ -41,6 +44,13 @@ namespace Poke.UI {
         protected override void OnDisable() {
             base.OnDisable();
             _text.OnPreRenderText -= Resize;
+        }
+
+        public override void Update() {
+            if(_text.textInfo.characterCount != _strLength)
+                _text.ForceMeshUpdate(forceTextReparsing: true);
+            
+            base.Update();
         }
 
         private void Resize(TMP_TextInfo textInfo) {
