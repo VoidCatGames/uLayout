@@ -29,8 +29,8 @@ namespace Poke.UI
         private SerializedProperty _alignContent;
         private SerializedProperty _innerSpacing;
         
-        protected override void Awake() {
-            base.Awake();
+        protected override void OnEnable() {
+            base.OnEnable();
             _layout = target as Layout;
 
             _padding = serializedObject.FindProperty("m_padding");
@@ -43,6 +43,9 @@ namespace Poke.UI
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
 
+            if(!_layout)
+                return;
+            
             EditorGUILayout.PropertyField(_padding);
             EditorGUILayout.PropertyField(_direction);
             EditorGUILayout.PropertyField(_justifyContent);

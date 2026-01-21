@@ -28,7 +28,7 @@ namespace Poke.UI
         private SerializedProperty _ignoreLayout;
         private SerializedProperty _sizing;
 
-        protected virtual void Awake() {
+        protected virtual void OnEnable() {
             _item = target as LayoutItem;
 
             _log = serializedObject.FindProperty("m_log");
@@ -37,6 +37,9 @@ namespace Poke.UI
         }
 
         public override void OnInspectorGUI() {
+            if(!_item)
+                return;
+            
             EditorGUILayout.PropertyField(_log);
             EditorGUILayout.PropertyField(_ignoreLayout);
             
