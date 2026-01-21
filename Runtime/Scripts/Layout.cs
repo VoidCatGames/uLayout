@@ -811,9 +811,20 @@ namespace Poke.UI
         
         public void RefreshChildCache() {
             _children.Clear();
-            _layoutItems = new LayoutItem[transform.childCount];
+
+            int childCount = transform.childCount;
+
+            // only reallocate layoutItems array if child count has grown (or first refresh)
+            if(_layoutItems == null || childCount > _layoutItems.Length) {
+                _layoutItems = new LayoutItem[childCount];
+            }
+            else {
+                for(int i = 0; i < _layoutItems.Length; i++) {
+                    _layoutItems[i] = null;
+                }
+            }
             
-            for(int i = 0; i < transform.childCount; i++) {
+            for(int i = 0; i < childCount; i++) {
                 RectTransform rt = transform.GetChild(i).GetComponent<RectTransform>();
                 
                 LayoutItem li = rt.GetComponent<LayoutItem>();

@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.AutoSizeText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -401,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -466,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -642,6 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -763,11 +767,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1228376615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 167.45, y: 73.59375}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -12}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &217840706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.AutoSizeText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -936,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -1058,11 +1064,11 @@ RectTransform:
   - {fileID: 1212911547}
   m_Father: {fileID: 1166699937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 185.39648}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -49.396484}
+  m_SizeDelta: {x: 663.07, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &289876039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1075,6 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -1159,11 +1166,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 200706037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 190.89, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &293280498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -1314,11 +1322,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1149534234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 104.3, y: 19.307175}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 16, y: -8}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &313861188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,6 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -1561,6 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -1682,11 +1692,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1191940702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 248.07, y: 48.557102}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 16, y: -8}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &360253927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,6 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -1854,6 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -1917,6 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -2055,11 +2068,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 363237837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 140.66, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.81, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &646719661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,6 +2085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -2419,6 +2433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -2601,6 +2616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 1
@@ -2777,6 +2793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670089077e18d0a48899b28ade12d54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutItem
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 1
@@ -2981,6 +2998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -3110,11 +3128,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1166699937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 286.75, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &994240094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,6 +3145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -3416,11 +3435,11 @@ RectTransform:
   - {fileID: 2126070719}
   m_Father: {fileID: 200706037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 264}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -49.396484}
+  m_SizeDelta: {x: 663.07, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1066469971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3433,6 +3452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -3534,6 +3554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -3765,6 +3786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -3866,6 +3888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -4005,6 +4028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -4108,6 +4132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -4212,6 +4237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UILayout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 1
@@ -4237,7 +4263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4076dd0ba0db2e4bae7d4be32805d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutRoot
-  m_log: 1
+  m_log: 0
 --- !u!114 &1221409043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4330,6 +4356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UILayout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -4506,6 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -4569,6 +4597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.AutoSizeText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -4724,6 +4753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -4939,11 +4969,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1842710408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 154.1, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1529612395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,6 +5086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -5117,6 +5148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -5291,11 +5323,11 @@ RectTransform:
   - {fileID: 162988277}
   m_Father: {fileID: 945188099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 185.39648}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -49.396484}
+  m_SizeDelta: {x: 663.07, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1670406633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5308,6 +5340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -5392,11 +5425,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 162988277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40.04, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 16, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1687583709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5409,6 +5442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -5564,6 +5598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.AutoSizeText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -5702,11 +5737,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1212911547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 154.1, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 16, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1727149644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5719,6 +5754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -5961,6 +5997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -6222,11 +6259,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 151115128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 96.5918}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -45.396484}
+  m_SizeDelta: {x: 663.07, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1825502687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6239,6 +6276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -6395,6 +6433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670089077e18d0a48899b28ade12d54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.IgnoreLayout
+  m_log: 0
   m_ignoreLayout: 1
   m_sizing:
     x: 0
@@ -6449,6 +6488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -6570,11 +6610,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 945188099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 170.38, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1875483525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6587,6 +6627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -6819,6 +6860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -6865,11 +6907,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 363237837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 208.81, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1912177725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6882,6 +6924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -7020,11 +7063,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1842710408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 108.3, y: 41.396484}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 249.16998, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1955216942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7037,6 +7080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e37e2b5f1962004c8f10779a2fcf23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutText
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0
@@ -7201,6 +7245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 2
@@ -7416,6 +7461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.Layout
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 0

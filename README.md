@@ -71,3 +71,7 @@ Resizing text is relatively expensive, and triggers a lot of canvas updates&mdas
 - Console reports missing references on import - simply enter Play Mode once and it should fix itself (also you need the TextMeshPro assets)
 - No `overflow` options
 
+---
+
+## Contributing
+Contributions are welcome and greatly appreciated! Open a pull request and I'll do my best to review it in a timely manner. For contributors: **Please do not go through and alter existing code style and/or syntax.** This makes it needlessly difficult to parse your changes, and I will simply end up changing it back anyway!
