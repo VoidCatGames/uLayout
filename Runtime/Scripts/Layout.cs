@@ -134,6 +134,7 @@ namespace Poke.UI
         public override void Update() {
             base.Update();
             bool layoutChanged = _dirty;
+            bool needsCacheRefresh = false;
 
             if(!layoutChanged) {
                 // check if the container changed this frame
@@ -142,12 +143,18 @@ namespace Poke.UI
                 }
                 // check if any children were added/removed this frame
                 if(transform.childCount != _children.Count) {
-                    RefreshChildCache();
                     layoutChanged = true;
+                    needsCacheRefresh = true;
                 }
                 
                 // check for changes in children
                 foreach(ChildInfo c in _children) {
+                    // check if child index has changed
+                    if(c.rect.GetSiblingIndex() != c.index) {
+                        layoutChanged = true;
+                        needsCacheRefresh = true;
+                    }
+                    
                     // check if item was disabled this frame
                     if(c.rect.gameObject.activeInHierarchy != c.enabled) {
                         c.enabled = c.rect.gameObject.activeInHierarchy;
@@ -177,6 +184,9 @@ namespace Poke.UI
             if(layoutChanged) {
                 _dirty = true;
                 OnLayoutChanged?.Invoke();
+                
+                if(needsCacheRefresh)
+                    RefreshChildCache();
             }
 
             _lastSize = _rect.rect.size;
