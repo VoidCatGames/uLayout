@@ -36,7 +36,7 @@ namespace Poke.UI
             UpdateLayout();
         }
 
-        private void SetDirty() {
+        public void SetDirty() {
             _dirty = true;
         }
         

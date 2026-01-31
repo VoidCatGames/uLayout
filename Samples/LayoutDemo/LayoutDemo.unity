@@ -4263,7 +4263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4076dd0ba0db2e4bae7d4be32805d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutRoot
-  m_log: 0
+  m_log: 1
 --- !u!114 &1221409043
 MonoBehaviour:
   m_ObjectHideFlags: 0
