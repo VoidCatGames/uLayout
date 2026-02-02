@@ -817,6 +817,7 @@ namespace Poke.UI
 
         public void SetDirty() {
             _dirty = true;
+            _root.SetDirty();
         }
         
         public void RefreshChildCache() {

@@ -36,6 +36,7 @@ namespace Poke.UI {
             _text.OnPreRenderText += Resize;
             _text.ForceMeshUpdate(forceTextReparsing: true);
 
+            Resize(_text.textInfo);
             _strLength = _text.textInfo.characterCount;
             
             base.OnEnable();
@@ -47,9 +48,10 @@ namespace Poke.UI {
         }
 
         public override void Update() {
-            if(_text.textInfo.characterCount != _strLength)
+            if(_text.textInfo.characterCount != _strLength) {
                 _text.ForceMeshUpdate(forceTextReparsing: true);
-            
+                _text.UpdateVertexData();
+            }
             base.Update();
         }
 

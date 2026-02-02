@@ -28,14 +28,15 @@ namespace Poke.UI
         private readonly Stack<Layout> _reverse = new ();
         private bool _dirty;
 
-        private int _tick;
+        private void OnEnable() {
+            _dirty = true;
+        }
 
         private void Start() {
-            _tick = 0;
             UpdateLayout();
         }
 
-        private void SetDirty() {
+        public void SetDirty() {
             _dirty = true;
         }
         
@@ -43,8 +44,6 @@ namespace Poke.UI
             if(_dirty) {
                 UpdateLayout();
             }
-            
-            _tick++;
         }
 
         public void UpdateLayout() {
@@ -63,7 +62,7 @@ namespace Poke.UI
 
             // grow sizing pass (1)
             if(m_log) Debug.Log($"[Root]: Grow Size Pass");
-            foreach(Layout l in _layouts) {
+            foreach(Layout l in _reverse) {
                 if(l.NeedsRefresh) {
                     l.GrowChildren();
                 }
@@ -85,12 +84,15 @@ namespace Poke.UI
             
             layout.OnLayoutChanged += SetDirty;
             _layouts.Add(layout);
+            
+            SetDirty();
         }
 
         public void UnregisterLayout(Layout layout) {
             if(_layouts.Remove(layout)) {
                 layout.OnLayoutChanged -= SetDirty;
                 
+                SetDirty();
                 if(m_log) Debug.Log($"Removed \"{layout.name}\"");
             }
             else {
