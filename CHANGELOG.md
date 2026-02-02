@@ -1,6 +1,7 @@
-﻿## [1.5.1] - ???
+﻿## [1.5.1] - 2026-02-02
 
 ### Fixed
+- Fixed grow pass running bottom-up instead of top-down
 - Queue `LayoutRoot` update on enable
 - Fixed TextMeshPro vertices not being updated when resizing `LayoutText`
 
