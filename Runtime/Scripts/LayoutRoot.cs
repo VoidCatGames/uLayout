@@ -62,7 +62,7 @@ namespace Poke.UI
 
             // grow sizing pass (1)
             if(m_log) Debug.Log($"[Root]: Grow Size Pass");
-            foreach(Layout l in _layouts) {
+            foreach(Layout l in _reverse) {
                 if(l.NeedsRefresh) {
                     l.GrowChildren();
                 }
