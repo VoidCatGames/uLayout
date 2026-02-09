@@ -1,4 +1,13 @@
-﻿## [1.5.1] - 2026-02-02
+﻿## [1.5.2] - 2026-02-09
+
+### Fixed
+- Improved accuracy of RectTransform DrivenTransformProperties
+  - each RectTransform is now driven by at most one component
+  - DrivenTransformProperties are now applied to non-`LayoutItem` objects when appropriate
+- Improved `Layout` detection of added/deleted non-`LayoutItem` children
+- fixed `LayoutText` regression in 1.5.1
+
+## [1.5.1] - 2026-02-02
 
 ### Fixed
 - Fixed grow pass running bottom-up instead of top-down

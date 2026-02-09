@@ -52,7 +52,6 @@ namespace Poke.UI
         private Vector2                     _lastSize;
         private LayoutItem[]                _layoutItems;
         private readonly Vector3[]          _rectCorners = new Vector3[4];
-        private DrivenRectTransformTracker  _rectTracker;
         private LayoutRoot                  _root;
 
         #region TypeDef
@@ -92,7 +91,6 @@ namespace Poke.UI
         #region Layout MonoBehavior
         protected override void Awake() {
             base.Awake();
-            _rectTracker = new DrivenRectTransformTracker();
             _growChildren = new List<LayoutItem>();
         }
 
@@ -133,54 +131,68 @@ namespace Poke.UI
 
         public override void Update() {
             base.Update();
+            
             bool layoutChanged = _dirty;
             bool needsCacheRefresh = false;
-
-            if(!layoutChanged) {
-                // check if the container changed this frame
-                if(!Mathf.Approximately(_lastSize.x, _rect.rect.size.x) || !Mathf.Approximately(_lastSize.y, _rect.rect.size.y)) {
+            
+            // check for changes in children
+            foreach(ChildInfo c in _children) {
+                if(!c.rect) {
                     layoutChanged = true;
+                    needsCacheRefresh = true;
+                    continue;
                 }
-                // check if any children were added/removed this frame
-                if(transform.childCount != _children.Count) {
+                
+                // check if child index has changed
+                if(c.rect.GetSiblingIndex() != c.index) {
                     layoutChanged = true;
                     needsCacheRefresh = true;
                 }
                 
-                // check for changes in children
-                foreach(ChildInfo c in _children) {
-                    // check if child index has changed
-                    if(c.rect.GetSiblingIndex() != c.index) {
-                        layoutChanged = true;
-                        needsCacheRefresh = true;
-                    }
-                    
-                    // check if item was disabled this frame
-                    if(c.rect.gameObject.activeInHierarchy != c.enabled) {
-                        c.enabled = c.rect.gameObject.activeInHierarchy;
-                        layoutChanged = true;
-                    }
+                // check if item was disabled this frame
+                if(c.rect.gameObject.activeInHierarchy != c.enabled) {
+                    c.enabled = c.rect.gameObject.activeInHierarchy;
+                    layoutChanged = true;
+                }
 
-                    LayoutItem li = _layoutItems[c.index];
-                    
+                LayoutItem li = _layoutItems[c.index];
+                if(li) {
                     // check if ignore layout toggled this frame
-                    if(li && li.IgnoreLayout != c.ignoreLayout) {
+                    if(li.IgnoreLayout != c.ignoreLayout) {
                         c.ignoreLayout = li.IgnoreLayout;
                         layoutChanged = true;
                     }
-
-                    // check if item changed size this frame
-                    if(!(li && li.SizeMode.x == SizingMode.Grow) && !Mathf.Approximately(c.rect.rect.size.x, c.size.x)) {
-                        c.size = c.size.SetX(c.rect.rect.size.x); 
-                        layoutChanged = true;
-                    }
-                    if(!(li && li.SizeMode.y == SizingMode.Grow) && !Mathf.Approximately(c.rect.rect.size.y, c.size.y)) {
-                        c.size = c.size.SetY(c.rect.rect.size.y);
-                        layoutChanged = true;
-                    }
+                }
+                else {
+                    _tracker.Add(
+                        this,
+                        c.rect,
+                        DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot
+                            | DrivenTransformProperties.Anchors
+                    );
+                }
+                
+                // check if item changed size this frame
+                if(!(li && li.SizeMode.x == SizingMode.Grow) && !Mathf.Approximately(c.rect.rect.size.x, c.size.x)) {
+                    c.size = c.size.SetX(c.rect.rect.size.x); 
+                    layoutChanged = true;
+                }
+                if(!(li && li.SizeMode.y == SizingMode.Grow) && !Mathf.Approximately(c.rect.rect.size.y, c.size.y)) {
+                    c.size = c.size.SetY(c.rect.rect.size.y);
+                    layoutChanged = true;
                 }
             }
-
+            
+            // check if the container changed this frame
+            if(!Mathf.Approximately(_lastSize.x, _rect.rect.size.x) || !Mathf.Approximately(_lastSize.y, _rect.rect.size.y)) {
+                layoutChanged = true;
+            }
+            // check if any children were added/removed this frame
+            if(transform.childCount != _children.Count) {
+                layoutChanged = true;
+                needsCacheRefresh = true;
+            }
+            
             if(layoutChanged) {
                 _dirty = true;
                 OnLayoutChanged?.Invoke();
@@ -230,14 +242,10 @@ namespace Poke.UI
             _growChildCount = new Vector2Int(0, 0);
             _ignoreCount = 0;
             
-            _rectTracker.Clear();
-            if(m_sizing.x == SizingMode.FitContent || (!_parent && m_sizing.x == SizingMode.Grow))
-                _rectTracker.Add(this, _rect, DrivenTransformProperties.SizeDeltaX);
-            if(m_sizing.y == SizingMode.FitContent || (!_parent && m_sizing.y == SizingMode.Grow))
-                _rectTracker.Add(this, _rect, DrivenTransformProperties.SizeDeltaY);
-            
             if(_children.Count > 0) {
-                // get number of disabled/ignore children
+                LayoutItem li = null;
+                
+                // get number of disabled/ignore children, reset rect trackers
                 foreach(ChildInfo c in _children) {
                     if(CheckIgnoreElem(c)) {
                         _ignoreCount++;
@@ -246,7 +254,6 @@ namespace Poke.UI
 
                 float primarySize = m_justifyContent == Justification.SpaceBetween ? 0 : m_innerSpacing * (_children.Count-_ignoreCount-1);
                 float crossSize = 0;
-                LayoutItem li = null;
                 
                 // calculate content size
                 float maxCrossSize = 0;
@@ -360,16 +367,12 @@ namespace Poke.UI
 
                         foreach(LayoutItem li in _growChildren) {
                             if(li.SizeMode.x == SizingMode.Grow) {
-                                _rectTracker.Add(this, li.Rect, DrivenTransformProperties.SizeDeltaX);
                                 li.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
-                                
                                 _contentSize.x += size.x;
                             }
 
                             if(li.SizeMode.y == SizingMode.Grow) {
-                                _rectTracker.Add(this, li.Rect, DrivenTransformProperties.SizeDeltaY);
                                 li.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
-                                
                                 _contentSize.y = Mathf.Max(size.y, _contentSize.y);
                             }
                         }
@@ -383,20 +386,16 @@ namespace Poke.UI
 
                         foreach(LayoutItem li in _growChildren) {
                             if(li.SizeMode.y == SizingMode.Grow) {
-                                _rectTracker.Add(this, li.Rect, DrivenTransformProperties.SizeDeltaY);
                                 li.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
-                                
                                 _contentSize.y += size.y;
                             }
 
                             if(li.SizeMode.x == SizingMode.Grow) {
-                                _rectTracker.Add(this, li.Rect, DrivenTransformProperties.SizeDeltaX);
                                 li.Rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
-                                
                                 _contentSize.x = Mathf.Max(size.x, _contentSize.x);
                             }
                         }
-
+                        
                         break;
                 }
             }
@@ -412,12 +411,6 @@ namespace Poke.UI
                 // skip disabled/ignore items
                 if(CheckIgnoreElem(c))
                     continue;
-                
-                _rectTracker.Add(
-                    this,
-                    c.rect,
-                    DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot | DrivenTransformProperties.Anchors
-                );
             }
             
             // primary axis pass
@@ -822,7 +815,7 @@ namespace Poke.UI
         
         public void RefreshChildCache() {
             _children.Clear();
-
+            
             int childCount = transform.childCount;
 
             // only reallocate layoutItems array if child count has grown (or first refresh)
@@ -840,6 +833,9 @@ namespace Poke.UI
                 
                 LayoutItem li = rt.GetComponent<LayoutItem>();
                 _layoutItems[i] = li;
+                if(li) {
+                    li.TrackerProps = DrivenTransformProperties.None;
+                }
                 
                 _children.Add(
                     new ChildInfo {
