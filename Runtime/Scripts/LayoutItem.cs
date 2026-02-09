@@ -38,9 +38,15 @@ namespace Poke.UI
             }
         }
         public RectTransform Rect => _rect;
+        public DrivenTransformProperties TrackerProps {
+            get => _trackerProps;
+            set => _trackerProps = value;
+        }
         public SizeModes SizeMode => m_sizing;
-
+        
         protected RectTransform _rect;
+        protected DrivenRectTransformTracker _tracker;
+        protected DrivenTransformProperties _trackerProps;
         protected RectTransform _parentRect;
         protected Layout _parent;
 
@@ -59,6 +65,7 @@ namespace Poke.UI
 #endif
             
             _rect = GetComponent<RectTransform>();
+            _tracker = new DrivenRectTransformTracker();
             
             // parent will always exist EXCEPT for in prefab editing
             // (bc Canvas has a RectTransform)
@@ -75,6 +82,8 @@ namespace Poke.UI
                     _parent.RefreshChildCache();
                 }
             }
+
+            _trackerProps = DrivenTransformProperties.None;
         }
 
         protected virtual void OnDisable() {
@@ -98,6 +107,23 @@ namespace Poke.UI
                 }
                 
             }
+            
+            _trackerProps = DrivenTransformProperties.None;
+            _tracker.Clear();
+        }
+
+        private void LateUpdate() {
+            if(m_sizing.x == SizingMode.FitContent || m_sizing.x == SizingMode.Grow)
+                _trackerProps |= DrivenTransformProperties.SizeDeltaX;
+            if(m_sizing.y == SizingMode.FitContent || m_sizing.y == SizingMode.Grow)
+                _trackerProps |= DrivenTransformProperties.SizeDeltaY;
+
+            if(_parent && !m_ignoreLayout) {
+                _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot |
+                                 DrivenTransformProperties.Anchors;
+            }
+            
+            _tracker.Add(this, _rect, _trackerProps);
         }
 
         private void OnValidate() {
@@ -127,7 +153,7 @@ namespace Poke.UI
             topmostTransform.SetParent(layoutRootObject.transform, false);
         }
 #endif
-
+        
         public void SetParentDirty() {
             if(_parent) {
                 _parent.SetDirty();
