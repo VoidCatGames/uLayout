@@ -50,7 +50,6 @@ namespace Poke.UI {
         public override void Update() {
             if(_text.textInfo.characterCount != _strLength) {
                 _text.ForceMeshUpdate(forceTextReparsing: true);
-                _text.UpdateVertexData();
             }
             base.Update();
         }
@@ -84,16 +83,12 @@ namespace Poke.UI {
             // Y Pass
             if(fitY) {
                 float height = 0;
-                //Debug.Log($"[LT:{gameObject.name}] line count: {textInfo.lineCount}");
                 for(int i = 0; i < textInfo.lineCount; i++) {
                     height += textInfo.lineInfo[i].lineHeight;
                 }
                 size.y = height;
                 _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
             }
-            
-            //Debug.Log($"[LT:{gameObject.name}] {_rect.rect.size:f3}");
-
         }
     }
 }
