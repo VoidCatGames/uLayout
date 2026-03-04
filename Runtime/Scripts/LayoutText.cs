@@ -21,9 +21,6 @@ namespace Poke.UI
     [RequireComponent(typeof(TMP_Text))]
     public class LayoutText : LayoutItem
     {
-        [Header("Text")]
-        [SerializeField, Min(0)] private float m_maxFontSize;
-        
         private TMP_Text _text;
         private Vector2 _preferredSize;
         private float _fontSize;

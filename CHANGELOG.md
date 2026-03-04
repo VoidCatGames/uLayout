@@ -1,10 +1,14 @@
-﻿## [1.5.3] - ???
+﻿## [1.5.3] - 2026-03-04
 
 ### Changed
-- `Layout` takes into account child transform scale when calculating fit size
+- `Layout` takes into account child transform scale when calculating fit size (this can be disabled if you want to ignore child scale)
 
 ### Fixed
-- LayoutText
+- Improved `LayoutText` grow sizing behavior
+- Improved `LayoutText` response to SerializedProperty changes in the editor
+
+### Removed
+- Removed `LayoutText` 'maxFontSize' property
 
 ## [1.5.2] - 2026-02-09
 

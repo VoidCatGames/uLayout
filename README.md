@@ -38,7 +38,7 @@ Resizing text is relatively expensive, and triggers a lot of canvas updates&mdas
 
 ## Component Settings
 ### LayoutItem
-- **Ignore Layout** (`bool`): whether to exclude this element from layout positioning
+- **Ignore Layout** (`bool`): Whether to exclude this element from layout positioning
 - **Size Mode**: Sets the rect sizing mode for each axis. "**FitContent**" has no effect (use derived classes below)
   - **x** (`SizingMode`)
   - **y** (`SizingMode`)
@@ -61,9 +61,7 @@ Resizing text is relatively expensive, and triggers a lot of canvas updates&mdas
   - `Center`: Align children to the center of the cross axis
   - `End`: Align children to the end of the cross axis
 - **Inner Spacing** (`float`): Sets the gap between children on the primary layout axis. Does not work with `Justification.SpaceBetween` (layout will be wrong, just set to 0)
-
-### LayoutText (&larr; `LayoutItem`)
-- **Max Font Size** (`float`): The maximum size the text will grow when the `TMP_Text`'s "**Auto Size**" option is enabled (when disabled, this option has no effect). Only works with "**Fixed**" or "**Grow**" sizing modes.
+- **Ignore Child Scale** (`bool`): Whether to ignore child RectTransform scale property when calculating fit size & layout
 
 ---
 

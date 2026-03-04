@@ -249,7 +249,6 @@ MonoBehaviour:
   m_sizing:
     x: 2
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &117821695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +415,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 4
+  m_ignoreChildScale: 0
 --- !u!1 &162988276
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +482,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 1
   m_innerSpacing: 16
+  m_ignoreChildScale: 0
 --- !u!114 &162988279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,6 +660,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &214602367
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +891,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!1 &228051139
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +956,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &260314257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,6 +1097,7 @@ MonoBehaviour:
   m_justifyContent: 1
   m_alignContent: 1
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &289876040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,7 +1191,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &293280499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,7 +1346,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &313861189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &343053648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1716,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &360253928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1879,6 +1880,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &497310060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +1936,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &497310063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2090,7 +2091,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &646719662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2447,6 +2447,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &711031888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,7 +2617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UI.Layout
-  m_log: 0
+  m_log: 1
   m_ignoreLayout: 0
   m_sizing:
     x: 1
@@ -2630,6 +2631,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 16
+  m_ignoreChildScale: 0
 --- !u!1 &781615155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3012,6 +3014,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,7 +3153,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &994240095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3466,6 +3468,7 @@ MonoBehaviour:
   m_justifyContent: 1
   m_alignContent: 1
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1066469972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3559,7 +3562,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1149273952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3800,6 +3802,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1149534236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3902,6 +3905,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &1191247594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4046,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1191940704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4146,6 +4151,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 1
   m_innerSpacing: 16
+  m_ignoreChildScale: 0
 --- !u!114 &1212911549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4237,7 +4243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0a3eca52933fb4786ca2737c131c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poke.UILayout
-  m_log: 1
+  m_log: 0
   m_ignoreLayout: 0
   m_sizing:
     x: 1
@@ -4251,6 +4257,7 @@ MonoBehaviour:
   m_justifyContent: 3
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1221409042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4263,7 +4270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4076dd0ba0db2e4bae7d4be32805d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: uLayout::Poke.UI.LayoutRoot
-  m_log: 0
+  m_log: 1
 --- !u!114 &1221409043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4370,6 +4377,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1228376617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4547,6 +4555,7 @@ MonoBehaviour:
   m_justifyContent: 1
   m_alignContent: 2
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &1458607634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4602,7 +4611,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1458607637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4758,7 +4766,6 @@ MonoBehaviour:
   m_sizing:
     x: 2
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1491542983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5091,7 +5098,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!1 &1588500895
 GameObject:
   m_ObjectHideFlags: 0
@@ -5162,6 +5168,7 @@ MonoBehaviour:
   m_justifyContent: 1
   m_alignContent: 1
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!114 &1588500898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5354,6 +5361,7 @@ MonoBehaviour:
   m_justifyContent: 1
   m_alignContent: 1
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!114 &1670406634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5447,7 +5455,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1687583710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5603,7 +5610,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1724996049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,7 +5765,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1727149645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6078,6 +6083,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 4
+  m_ignoreChildScale: 0
 --- !u!114 &1754041144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6348,7 +6354,6 @@ MonoBehaviour:
   m_sizing:
     x: 2
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1825502688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6571,6 +6576,7 @@ MonoBehaviour:
   m_justifyContent: 3
   m_alignContent: 1
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!1 &1862548878
 GameObject:
   m_ObjectHideFlags: 0
@@ -6701,7 +6707,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1875483526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6943,6 +6948,7 @@ MonoBehaviour:
   m_justifyContent: 3
   m_alignContent: 0
   m_innerSpacing: 0
+  m_ignoreChildScale: 0
 --- !u!1 &1912177723
 GameObject:
   m_ObjectHideFlags: 0
@@ -6998,7 +7004,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1912177726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7154,7 +7159,6 @@ MonoBehaviour:
   m_sizing:
     x: 0
     y: 0
-  m_maxFontSize: 0
 --- !u!114 &1955216943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7328,6 +7332,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 0
   m_innerSpacing: 8
+  m_ignoreChildScale: 0
 --- !u!1 &2083962298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7544,6 +7549,7 @@ MonoBehaviour:
   m_justifyContent: 0
   m_alignContent: 1
   m_innerSpacing: 16
+  m_ignoreChildScale: 0
 --- !u!114 &2126070721
 MonoBehaviour:
   m_ObjectHideFlags: 0

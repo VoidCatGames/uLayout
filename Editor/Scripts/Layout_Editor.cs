@@ -28,6 +28,7 @@ namespace Poke.UI
         private SerializedProperty _justifyContent;
         private SerializedProperty _alignContent;
         private SerializedProperty _innerSpacing;
+        private SerializedProperty _ignoreChildScale;
         
         protected override void OnEnable() {
             base.OnEnable();
@@ -38,6 +39,7 @@ namespace Poke.UI
             _justifyContent = serializedObject.FindProperty("m_justifyContent");
             _alignContent = serializedObject.FindProperty("m_alignContent");
             _innerSpacing = serializedObject.FindProperty("m_innerSpacing");
+            _ignoreChildScale = serializedObject.FindProperty("m_ignoreChildScale");
         }
 
         public override void OnInspectorGUI() {
@@ -45,7 +47,7 @@ namespace Poke.UI
 
             if(!_layout)
                 return;
-            
+
             EditorGUILayout.PropertyField(_padding);
             EditorGUILayout.PropertyField(_direction);
             EditorGUILayout.PropertyField(_justifyContent);
@@ -56,6 +58,8 @@ namespace Poke.UI
             }
             EditorGUILayout.PropertyField(_innerSpacing);
             GUI.enabled = true;
+            
+            EditorGUILayout.PropertyField(_ignoreChildScale);
 
             if(serializedObject.hasModifiedProperties) {
                 _layout.SetDirty();
@@ -64,7 +68,7 @@ namespace Poke.UI
             
             EditorGUILayout.Space();
             EditorGUILayout.HelpBox(
-                $"Tracking {_layout.ChildCount} layout elements." + (_layout.GrowChildCount > 0 ? $"\n({_layout.GrowChildCount} grow)" : ""),
+                $"Tracking {_layout.ChildCount} layout elements.\nHorizontal Grow: {_layout.GrowChildCount.x}, Vertical Grow: {_layout.GrowChildCount.y}",
                 MessageType.Info
             );
             if(GUILayout.Button("Refresh Child Cache")) {
