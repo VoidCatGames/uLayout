@@ -13,6 +13,7 @@
 */
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Poke.UI
 {
@@ -126,7 +127,7 @@ namespace Poke.UI
             _tracker.Add(this, _rect, _trackerProps);
         }
 
-        private void OnValidate() {
+        protected virtual void OnValidate() {
             Awake();
         }
 

@@ -80,7 +80,7 @@ namespace Poke.UI
         }
 
         public void RegisterLayout(Layout layout) {
-            if(m_log) Debug.Log($"Registered \"{layout.name}\" at depth [{layout.Depth}]");
+            if(m_log) Debug.Log($"[Root]: Registered \"{layout.name}\" at depth [{layout.Depth}]");
             
             layout.OnLayoutChanged += SetDirty;
             _layouts.Add(layout);
@@ -93,10 +93,10 @@ namespace Poke.UI
                 layout.OnLayoutChanged -= SetDirty;
                 
                 SetDirty();
-                if(m_log) Debug.Log($"Removed \"{layout.name}\"");
+                if(m_log) Debug.Log($"[Root]: Removed \"{layout.name}\"");
             }
             else {
-                Debug.LogError($"Failed to remove \"{layout.name}\" (not found)");
+                Debug.LogError($"[Root]: Failed to remove \"{layout.name}\" (not found)");
             }
         }
     }

@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Poke.UI
 {
@@ -278,13 +279,13 @@ namespace Poke.UI
                     switch(m_direction) {
                         case LayoutDirection.Row:
                         case LayoutDirection.RowReverse:
-                            primarySize += growX ? 0 : elem.rect.sizeDelta.x;
-                            maxCrossSize = Mathf.Max(maxCrossSize, growY ? 0 : elem.rect.sizeDelta.y);
+                            primarySize += growX ? 0 : elem.rect.sizeDelta.x * elem.rect.localScale.x;
+                            maxCrossSize = Mathf.Max(maxCrossSize, growY ? 0 : elem.rect.sizeDelta.y * elem.rect.localScale.y);
                             break;
                         case LayoutDirection.Column:
                         case LayoutDirection.ColumnReverse:
-                            primarySize += growY ? 0 : elem.rect.sizeDelta.y;
-                            maxCrossSize = Mathf.Max(maxCrossSize, growX ? 0 : elem.rect.sizeDelta.x);
+                            primarySize += growY ? 0 : elem.rect.sizeDelta.y * elem.rect.localScale.y;
+                            maxCrossSize = Mathf.Max(maxCrossSize, growX ? 0 : elem.rect.sizeDelta.x * elem.rect.localScale.x);
                             break;
                     }
                 }

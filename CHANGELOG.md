@@ -1,4 +1,12 @@
-﻿## [1.5.2] - 2026-02-09
+﻿## [1.5.3] - ???
+
+### Changed
+- `Layout` takes into account child transform scale when calculating fit size
+
+### Fixed
+- LayoutText
+
+## [1.5.2] - 2026-02-09
 
 ### Fixed
 - Improved accuracy of RectTransform DrivenTransformProperties
