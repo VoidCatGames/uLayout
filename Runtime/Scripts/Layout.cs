@@ -306,7 +306,8 @@ namespace Poke.UI
                 case RectTransform.Axis.Horizontal:
                     if(_growChildCount.x > 0) {
                         Log($"growing {_growChildCount.x} children horizontally {_rect.rect.size}");
-                        
+
+                        float count = _growChildCount.x;
                         switch(m_direction) {
                             case LayoutDirection.Row:
                             case LayoutDirection.RowReverse:
@@ -315,7 +316,7 @@ namespace Poke.UI
                                         continue;
                                     
                                     leftover = _rect.rect.size.x - _contentSize.x - m_padding.left - m_padding.right;
-                                    size = leftover / _growChildCount.x;
+                                    size = leftover / count;
                                     
                                     if(c.li.SizeMode.x == SizingMode.Grow) {
                                         c.size.x = size;
@@ -331,6 +332,8 @@ namespace Poke.UI
                                             _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
                                             Log($"resizing vertical axis based on callback response ({newHeight})");
                                         }
+
+                                        count--;
                                     }
                                 }
 
@@ -378,7 +381,8 @@ namespace Poke.UI
                 case RectTransform.Axis.Vertical:
                     if(_growChildCount.y > 0) {
                         Log($"growing {_growChildCount.y} children vertically {_rect.rect.size}");
-                        
+
+                        float count = _growChildCount.y;
                         switch(m_direction) {
                             case LayoutDirection.Row:
                             case LayoutDirection.RowReverse:
@@ -416,7 +420,7 @@ namespace Poke.UI
                                         continue;
                                     
                                     leftover = _rect.rect.size.y - _contentSize.y - m_padding.top - m_padding.bottom;
-                                    size = leftover / _growChildCount.y;
+                                    size = leftover / count;
                                     
                                     if(c.li.SizeMode.y == SizingMode.Grow) {
                                         c.size.y = size;
@@ -432,6 +436,8 @@ namespace Poke.UI
                                             _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newWidth);
                                             Log($"resizing vertical axis based on callback response ({newWidth})");
                                         }
+
+                                        count--;
                                     }
                                 }
                                 
