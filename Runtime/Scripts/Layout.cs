@@ -135,8 +135,7 @@ namespace Poke.UI
                     _tracker.Add(
                         this,
                         c.rect,
-                        DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot
-                            | DrivenTransformProperties.Anchors
+                        DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Anchors
                     );
                 }
             }

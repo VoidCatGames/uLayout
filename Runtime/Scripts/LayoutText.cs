@@ -61,7 +61,12 @@ namespace Poke.UI
 
             if(_dirty) {
                 Log("Marking for rebuild");
-                LayoutRebuilder.MarkLayoutForRebuild(_rect);
+                if(_parent)
+                    LayoutRebuilder.MarkLayoutForRebuild(_rect);
+                else {
+                    CalculateLayoutInputHorizontal();
+                    CalculateLayoutInputVertical();
+                }
             }
         }
 

@@ -1,4 +1,10 @@
-﻿## [1.6.0] - 2026-03-09
+﻿## [1.6.1] - 2026-03-10
+
+### Fixed
+- Fixed `LayoutText` not working when it has no `Layout` parent
+- Fixed `Layout` driving pivot of non-`LayoutItem` children
+
+## [1.6.0] - 2026-03-09
 
 ### Changed
 - Rewrote all uLayout components to implement Unity's ILayoutElement and ILayoutController interfaces to receive native canvas layout events
