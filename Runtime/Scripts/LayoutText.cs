@@ -19,7 +19,7 @@ using UnityEngine.UI;
 namespace Poke.UI
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class LayoutText : LayoutItem, ILayoutSelfController
+    public class LayoutText : LayoutItem
     {
         private TMP_Text _text;
         private Vector2 _preferredSize;
@@ -50,21 +50,19 @@ namespace Poke.UI
 
             if(String.CompareOrdinal(_str, _text.text) != 0) {
                 _str = _text.text;
-                _dirty = true;
+                SetDirty();
                 _textChanged = true;
             }
 
             if(!Mathf.Approximately(_text.fontSize, _fontSize)) {
                 _fontSize = _text.fontSize;
-                _dirty = true;
+                SetDirty();
             }
 
             if(_dirty) {
+                Log("Marking for rebuild");
                 LayoutRebuilder.MarkLayoutForRebuild(_rect);
-                _dirty = false;
             }
-
-            _textChanged = false;
         }
 
         protected override void SetDrivenProperties() {
@@ -77,65 +75,47 @@ namespace Poke.UI
                 _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Anchors;
             }
         }
-        
-        public override float GrowSizingXCallback(float x) {
-            base.GrowSizingXCallback(x);
-            
-            if(m_sizing.y == SizingMode.FitContent) {
-                _text.ForceMeshUpdate(true);
-                _preferredSize = _text.GetPreferredValues();
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
-                Log($"responsive y ({_preferredSize.y})");
-                return _preferredSize.y;
-            }
-
-            return -1;
-        }
-
-        public override float GrowSizingYCallback(float y) {
-            base.GrowSizingYCallback(y);
-            
-            if(m_sizing.x == SizingMode.FitContent) {
-                _text.ForceMeshUpdate(true);
-                _preferredSize = _text.GetPreferredValues();
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _preferredSize.x);
-                Log($"responsive x ({_preferredSize.x})");
-                return _preferredSize.x;
-            }
-
-            return -1;
-        }
 
         private void Log(object msg) {
-            if(m_log) Debug.Log($"[LT:{gameObject.name}]: {msg}");
+            if(m_log) Debug.Log($"[{_frame}] [LT:{gameObject.name}]: {msg}");
         }
 
         public override void CalculateLayoutInputHorizontal() {
-            base.CalculateLayoutInputHorizontal();
-            
-            _text.ForceMeshUpdate(true, _textChanged);
-            _preferredSize = _text.GetPreferredValues();
 
-            if(m_sizing.x == SizingMode.FitContent) {
-                Log($"fitting x ({_preferredSize.x})");
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _preferredSize.x);
+            if(_dirty) {
+                Log("CalculateLayoutInputHorizontal");
+                _text.ForceMeshUpdate(true, _textChanged);
+                _preferredSize = _text.GetPreferredValues();
+
+                if(m_sizing.x == SizingMode.FitContent) {
+                    Log($"fitting x ({_preferredSize.x})");
+                    _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _preferredSize.x);
+                }
             }
         }
 
         public override void CalculateLayoutInputVertical() {
-            base.CalculateLayoutInputVertical();
+            if(_dirty) {
+                Log("CalculateLayoutInputVertical");
+                
+                if(m_sizing.y == SizingMode.FitContent) {
+                    Log($"fitting y ({_preferredSize.y})");
+                    _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
+                }
+            }
 
+            _dirty = false;
+            _textChanged = false;
+        }
+
+        public void HandleGrowSizingX() {
             if(m_sizing.y == SizingMode.FitContent) {
-                Log($"fitting y ({_preferredSize.y})");
+                _text.ForceMeshUpdate();
+                _preferredSize = _text.GetPreferredValues();
+                Log($"resizing y based on x growth ({_preferredSize.y})");
+            
                 _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
             }
-        }
-
-        public void SetLayoutHorizontal() {
-            Log("SetLayoutHorizontal");
-        }
-        public void SetLayoutVertical() {
-            Log("SetLayoutVertical");
         }
     }
 }

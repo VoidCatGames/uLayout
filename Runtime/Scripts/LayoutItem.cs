@@ -22,7 +22,7 @@ namespace Poke.UI
         ExecuteAlways,
         RequireComponent(typeof(RectTransform))
     ]
-    public class LayoutItem : UIBehaviour, ILayoutElement
+    public class LayoutItem : MonoBehaviour, ILayoutElement
     {
         [SerializeField] protected bool m_log;
         
@@ -62,7 +62,8 @@ namespace Poke.UI
         protected DrivenTransformProperties _trackerProps;
         protected RectTransform _parentRect;
         protected Layout _parent;
-        protected bool _dirty;
+        protected bool _dirty = true;
+        protected int _frame;
         
         private Vector2 _parentSize;
         
@@ -74,10 +75,8 @@ namespace Poke.UI
         }
 
         #region LayoutItem MonoBehavior
-        protected override void Awake() {
-            base.Awake();
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: awake");
+        protected virtual void Awake() {
+            Log("awake");
             
             _rect = GetComponent<RectTransform>();
             _tracker = new DrivenRectTransformTracker();
@@ -85,9 +84,7 @@ namespace Poke.UI
             _parentSize = _parentRect ? _parentRect.rect.size : default;
         }
 
-        protected override void OnEnable() {
-            base.OnEnable();
-            
+        protected virtual void OnEnable() {
             if(transform.parent) {
                 _parentRect = transform.parent.GetComponent<RectTransform>();
                 _parent = transform.parent.GetComponent<Layout>();
@@ -98,15 +95,19 @@ namespace Poke.UI
         }
 
         public virtual void Update() {
+            //Log("update");
+            _frame = Time.frameCount;
+            
+            #if UNITY_EDITOR
             _tracker.Clear();
             _trackerProps = DrivenTransformProperties.None;
             
             SetDrivenProperties();
             
             _tracker.Add(this, _rect, _trackerProps);
+            #endif
             
             // Do grow sizing here if parent is not a Layout
-            // Grow does nothing if there is no parent (prefab editing)
             if(!_parent && _parentRect) {
                 // only update size if parent size has changed
                 if(m_sizing.x == SizingMode.Grow && !Mathf.Approximately(_parentRect.rect.size.x, _parentSize.x)) {
@@ -117,11 +118,14 @@ namespace Poke.UI
                     _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _parentRect.rect.size.y);
                     _parentSize = _parentSize.SetY(_parentRect.rect.size.y);
                 }
-                
             }
         }
         #endregion
 
+        private void Log(object msg) {
+            if(m_log) Debug.Log($"[{_frame}] [LI:{gameObject.name}]: {msg}");
+        }
+        
         protected virtual void SetDrivenProperties() {
             if((m_sizing.x == SizingMode.FitContent && transform.childCount > 0) || m_sizing.x == SizingMode.Grow)
                 _trackerProps |= DrivenTransformProperties.SizeDeltaX;
@@ -133,58 +137,18 @@ namespace Poke.UI
             }
         }
 
-        public virtual float GrowSizingXCallback(float x) {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: growing x size ({x})");
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, x);
-            return -1;
-        }
-
-        public virtual float GrowSizingYCallback(float y) {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: growing y size ({y})");
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
-            return -1;
-        }
-
         public virtual void SetDirty() {
-            LayoutRebuilder.MarkLayoutForRebuild(_rect);
             _dirty = true;
-        }
-
-        protected override void OnBeforeTransformParentChanged() {
-            base.OnBeforeTransformParentChanged();
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: OnBeforeTransformParentChanged");
-        }
-
-        protected override void OnCanvasGroupChanged() {
-            base.OnCanvasGroupChanged();
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: OnCanvasGroupChanged");
-        }
-
-        protected override void OnCanvasHierarchyChanged() {
-            base.OnCanvasHierarchyChanged();
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: OnCanvasHierarchyChanged");
-        }
-
-        protected override void OnRectTransformDimensionsChange() {
-            base.OnRectTransformDimensionsChange();
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: OnRectTransformDimensionsChange");
-        }
-
-        protected override void OnTransformParentChanged() {
-            base.OnTransformParentChanged();
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: OnTransformParentChanged");
+            if(_parent) {
+                _parent.SetDirty();
+            }
         }
 
         public virtual void CalculateLayoutInputHorizontal() {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: CalculateLayoutInputHorizontal");
+            Log("CalculateLayoutInputHorizontal");
         }
         public virtual void CalculateLayoutInputVertical() {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: CalculateLayoutInputVertical");
+            Log("CalculateLayoutInputVertical");
         }
-        
     }
 }

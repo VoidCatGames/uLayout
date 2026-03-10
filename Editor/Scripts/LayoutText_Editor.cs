@@ -1,9 +1,11 @@
 ﻿using UnityEditor;
-using UnityEngine.UIElements;
 
 namespace Poke.UI
 {
-    [CustomEditor(typeof(LayoutText))]
+    [
+        CustomEditor(typeof(LayoutText)),
+        CanEditMultipleObjects
+    ]
     public class LayoutText_Editor : LayoutItem_Editor
     { }
 }
