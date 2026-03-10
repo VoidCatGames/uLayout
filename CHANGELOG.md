@@ -1,4 +1,18 @@
-﻿## [1.5.5] - 2026-03-06
+﻿## [1.6.0] - 2026-03-09
+
+### Changed
+- Rewrote all uLayout components to implement Unity's ILayoutElement and ILayoutController interfaces to receive native canvas layout events
+  - Massive stability improvement, especially using grow sizing. It's basically perfect now.
+  - Massive editor responsiveness improvement. Again, basically perfect.
+  - Small performance improvement over the previous method all-around
+  - `LayoutRoot` component is no longer needed, meaning no special edge cases need to be handled for prefab editing
+- `Layout` no longer controls child pivot point, and can handle child objects with any pivot
+- Improved logging some more
+
+### Removed
+- Removed `LayoutRoot`.
+
+## [1.5.5] - 2026-03-06
 
 ### Fixed
 - Fixed grow sizing not respecting ignored/disabled children

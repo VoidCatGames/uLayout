@@ -13,6 +13,8 @@
 */
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Poke.UI
 {
@@ -20,7 +22,7 @@ namespace Poke.UI
         ExecuteAlways,
         RequireComponent(typeof(RectTransform))
     ]
-    public class LayoutItem : MonoBehaviour
+    public class LayoutItem : MonoBehaviour, ILayoutElement
     {
         [SerializeField] protected bool m_log;
         
@@ -28,14 +30,25 @@ namespace Poke.UI
         [SerializeField] protected bool m_ignoreLayout = false;
         [SerializeField] protected SizeModes m_sizing;
 
+        protected float _minWidth;
+        protected float _preferredWidth;
+        protected float _flexibleWidth;
+        protected float _minHeight;
+        protected float _preferredHeight;
+        protected float _flexibleHeight;
+        protected int _layoutPriority;
+
+        public float minWidth => _minWidth;
+        public float preferredWidth => _preferredWidth;
+        public float flexibleWidth => _flexibleWidth;
+        public float minHeight => _minHeight;
+        public float preferredHeight => _preferredHeight;
+        public float flexibleHeight => _flexibleHeight;
+        public int layoutPriority => _layoutPriority;
+        
         public bool IgnoreLayout {
             get => m_ignoreLayout;
-            set {
-                m_ignoreLayout = value;
-                if(_parent) {
-                    _parent.RefreshChildCache();
-                }
-            }
+            set => m_ignoreLayout = value;
         }
         public RectTransform Rect => _rect;
         public DrivenTransformProperties TrackerProps {
@@ -49,7 +62,8 @@ namespace Poke.UI
         protected DrivenTransformProperties _trackerProps;
         protected RectTransform _parentRect;
         protected Layout _parent;
-        protected bool _dirty;
+        protected bool _dirty = true;
+        protected int _frame;
         
         private Vector2 _parentSize;
         
@@ -62,11 +76,7 @@ namespace Poke.UI
 
         #region LayoutItem MonoBehavior
         protected virtual void Awake() {
-            #if UNITY_EDITOR
-            ValidatePrefabStage();
-            #endif
-            
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: awake");
+            Log("awake");
             
             _rect = GetComponent<RectTransform>();
             _tracker = new DrivenRectTransformTracker();
@@ -83,23 +93,21 @@ namespace Poke.UI
             _trackerProps = DrivenTransformProperties.None;
             _dirty = true;
         }
-        
-        #if UNITY_EDITOR
-        protected virtual void OnValidate() {
-            Awake();
-        }
-        #endif
 
         public virtual void Update() {
+            //Log("update");
+            _frame = Time.frameCount;
+            
+            #if UNITY_EDITOR
             _tracker.Clear();
             _trackerProps = DrivenTransformProperties.None;
             
             SetDrivenProperties();
             
             _tracker.Add(this, _rect, _trackerProps);
+            #endif
             
             // Do grow sizing here if parent is not a Layout
-            // Grow does nothing if there is no parent (prefab editing)
             if(!_parent && _parentRect) {
                 // only update size if parent size has changed
                 if(m_sizing.x == SizingMode.Grow && !Mathf.Approximately(_parentRect.rect.size.x, _parentSize.x)) {
@@ -110,11 +118,14 @@ namespace Poke.UI
                     _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _parentRect.rect.size.y);
                     _parentSize = _parentSize.SetY(_parentRect.rect.size.y);
                 }
-                
             }
         }
         #endregion
 
+        private void Log(object msg) {
+            if(m_log) Debug.Log($"[{_frame}] [LI:{gameObject.name}]: {msg}");
+        }
+        
         protected virtual void SetDrivenProperties() {
             if((m_sizing.x == SizingMode.FitContent && transform.childCount > 0) || m_sizing.x == SizingMode.Grow)
                 _trackerProps |= DrivenTransformProperties.SizeDeltaX;
@@ -122,45 +133,8 @@ namespace Poke.UI
                 _trackerProps |= DrivenTransformProperties.SizeDeltaY;
 
             if(_parent && !m_ignoreLayout) {
-                _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot |
-                                 DrivenTransformProperties.Anchors;
+                _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Anchors;
             }
-        }
-
-        #if UNITY_EDITOR
-        private void ValidatePrefabStage() {
-            var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetPrefabStage(gameObject);
-            if(prefabStage == null)
-                return;
-        
-            LayoutRoot lr = gameObject.GetComponentInParent<LayoutRoot>(true);
-            if(lr != null)
-                return;
-        
-            // This way of getting to root is necessary since prefabContentsRoot and GetRootGameObjects aren't available at this point
-            Transform topmostTransform = gameObject.transform;
-            while (topmostTransform.parent != null)
-                topmostTransform = topmostTransform.parent;
-        
-            GameObject layoutRootObject = new GameObject("LayoutRoot (Editor)");
-            layoutRootObject.hideFlags = HideFlags.DontSaveInEditor;
-            layoutRootObject.AddComponent<LayoutRoot>();
-        
-            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(layoutRootObject, prefabStage.scene);
-            topmostTransform.SetParent(layoutRootObject.transform, false);
-        }
-        #endif
-
-        public virtual float GrowSizingXCallback(float x) {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: growing x size ({x})");
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, x);
-            return -1;
-        }
-
-        public virtual float GrowSizingYCallback(float y) {
-            if(m_log) Debug.Log($"[LI:{gameObject.name}]: growing y size ({y})");
-            _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
-            return -1;
         }
 
         public virtual void SetDirty() {
@@ -168,6 +142,13 @@ namespace Poke.UI
             if(_parent) {
                 _parent.SetDirty();
             }
+        }
+
+        public virtual void CalculateLayoutInputHorizontal() {
+            Log("CalculateLayoutInputHorizontal");
+        }
+        public virtual void CalculateLayoutInputVertical() {
+            Log("CalculateLayoutInputVertical");
         }
     }
 }

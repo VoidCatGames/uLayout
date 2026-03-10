@@ -14,6 +14,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Poke.UI
 {
@@ -24,6 +25,7 @@ namespace Poke.UI
         private Vector2 _preferredSize;
         private float _fontSize;
         private string _str;
+        private bool _textChanged;
         
         protected override void Awake() {
             base.Awake();
@@ -39,8 +41,6 @@ namespace Poke.UI
             _text.ForceMeshUpdate(true, true);
 
             _preferredSize = _text.GetPreferredValues();
-            DoFitSizing(_preferredSize);
-            Log($"preferred size: {_preferredSize}, {_text.textInfo.lineCount} lines");
         }
 
         public override void Update() {
@@ -48,29 +48,20 @@ namespace Poke.UI
             
             _text.textWrappingMode = m_sizing.x != SizingMode.FitContent ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
 
-            bool textChanged = false;
             if(String.CompareOrdinal(_str, _text.text) != 0) {
                 _str = _text.text;
-                _dirty = true;
+                SetDirty();
+                _textChanged = true;
             }
 
             if(!Mathf.Approximately(_text.fontSize, _fontSize)) {
                 _fontSize = _text.fontSize;
-                _dirty = true;
-                textChanged = true;
-            }
-                
-            if(_dirty) {
-                _text.ForceMeshUpdate(true, textChanged);
-                _preferredSize = _text.GetPreferredValues();
-                DoFitSizing(_preferredSize);
+                SetDirty();
             }
 
             if(_dirty) {
-                if(_parent) {
-                    _parent.SetDirty();
-                }
-                _dirty = false;
+                Log("Marking for rebuild");
+                LayoutRebuilder.MarkLayoutForRebuild(_rect);
             }
         }
 
@@ -81,52 +72,50 @@ namespace Poke.UI
                 _trackerProps |= DrivenTransformProperties.SizeDeltaY;
 
             if(_parent && !m_ignoreLayout) {
-                _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot |
-                                 DrivenTransformProperties.Anchors;
+                _trackerProps |= DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Anchors;
             }
-        }
-
-        private void DoFitSizing(Vector2 size) {
-            if(m_sizing.x == SizingMode.FitContent && m_sizing.y != SizingMode.Grow) {
-                Log("Fit Size X");
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
-            }
-            if(m_sizing.y == SizingMode.FitContent && m_sizing.x != SizingMode.Grow) {
-                Log("Fit Size Y");
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
-            }
-        }
-        
-        public override float GrowSizingXCallback(float x) {
-            base.GrowSizingXCallback(x);
-            
-            if(m_sizing.y == SizingMode.FitContent) {
-                _text.ForceMeshUpdate(true);
-                _preferredSize = _text.GetPreferredValues();
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
-                Log($"responsive y ({_preferredSize.y})");
-                return _preferredSize.y;
-            }
-
-            return -1;
-        }
-
-        public override float GrowSizingYCallback(float y) {
-            base.GrowSizingYCallback(y);
-            
-            if(m_sizing.x == SizingMode.FitContent) {
-                _text.ForceMeshUpdate(true);
-                _preferredSize = _text.GetPreferredValues();
-                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _preferredSize.x);
-                Log($"responsive x ({_preferredSize.x})");
-                return _preferredSize.x;
-            }
-
-            return -1;
         }
 
         private void Log(object msg) {
-            if(m_log) Debug.Log($"[LT:{gameObject.name}]: {msg}");
+            if(m_log) Debug.Log($"[{_frame}] [LT:{gameObject.name}]: {msg}");
+        }
+
+        public override void CalculateLayoutInputHorizontal() {
+
+            if(_dirty) {
+                Log("CalculateLayoutInputHorizontal");
+                _text.ForceMeshUpdate(true, _textChanged);
+                _preferredSize = _text.GetPreferredValues();
+
+                if(m_sizing.x == SizingMode.FitContent) {
+                    Log($"fitting x ({_preferredSize.x})");
+                    _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _preferredSize.x);
+                }
+            }
+        }
+
+        public override void CalculateLayoutInputVertical() {
+            if(_dirty) {
+                Log("CalculateLayoutInputVertical");
+                
+                if(m_sizing.y == SizingMode.FitContent) {
+                    Log($"fitting y ({_preferredSize.y})");
+                    _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
+                }
+            }
+
+            _dirty = false;
+            _textChanged = false;
+        }
+
+        public void HandleGrowSizingX() {
+            if(m_sizing.y == SizingMode.FitContent) {
+                _text.ForceMeshUpdate();
+                _preferredSize = _text.GetPreferredValues();
+                Log($"resizing y based on x growth ({_preferredSize.y})");
+            
+                _rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _preferredSize.y);
+            }
         }
     }
 }

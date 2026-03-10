@@ -69,21 +69,5 @@ namespace Poke.UI
             Undo.RegisterCreatedObjectUndo(g, "Create " + g.name);
             Selection.activeObject = g;
         }
-        
-#if UNITY_6000_3_OR_NEWER
-        [MenuItem("GameObject/UI (Canvas)/Layout/Layout Root", false, 12)]
-#else
-        [MenuItem("GameObject/UI/Layout/Layout Root", false, 12)]
-#endif
-        public static void CreateLayoutRootObject(MenuCommand command) {
-            GameObject g = new GameObject("LayoutRoot");
-            GameObjectUtility.SetParentAndAlign(g, command.context as GameObject);
-            
-            g.AddComponent<RectTransform>();
-            g.AddComponent<LayoutRoot>();
-            
-            Undo.RegisterCreatedObjectUndo(g, "Create " + g.name);
-            Selection.activeObject = g;
-        }
     }
 }
