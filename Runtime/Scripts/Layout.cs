@@ -386,7 +386,7 @@ namespace Poke.UI
         }
         
         private bool CheckIgnoreElem(ChildInfo ci) {
-            return !ci.enabled || ci.ignoreLayout;
+            return ci.rect == null || !ci.enabled || ci.ignoreLayout;
         }
 
         private void SetAnchorX(RectTransform rt, float x) {
@@ -1039,7 +1039,8 @@ namespace Poke.UI
             
             for(int i = 0; i < childCount; i++) {
                 RectTransform rt = transform.GetChild(i).GetComponent<RectTransform>();
-                
+                if (rt == null) continue;
+
                 Log($"Adding child \"{rt.name}\" - size: {rt.rect.size}");
                 
                 LayoutItem li = rt.GetComponent<LayoutItem>();
