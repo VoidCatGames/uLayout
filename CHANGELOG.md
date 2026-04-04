@@ -1,4 +1,9 @@
-﻿## [1.6.1] - 2026-03-10
+﻿## [1.6.2] - 2026-04-04
+
+### Fixed
+- Added RectTransform null checks in `Layout` (RefreshChildCache and CheckIgnoreElem) - shoutout @realkotob
+
+## [1.6.1] - 2026-03-10
 
 ### Fixed
 - Fixed `LayoutText` not working when it has no `Layout` parent
