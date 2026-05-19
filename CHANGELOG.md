@@ -1,4 +1,12 @@
-﻿## [1.6.2] - 2026-04-04
+﻿## [1.6.3] - 2026-05-19
+
+### Added
+- Added public properties for `Layout` fields (padding, direction, justify/align content, etc) - shoutout @IbrahimOezhan
+
+### Fixed
+- Visual state is properly updated when editing multiple objects at once
+
+## [1.6.2] - 2026-04-04
 
 ### Fixed
 - Added RectTransform null checks in `Layout` (RefreshChildCache and CheckIgnoreElem) - shoutout @realkotob

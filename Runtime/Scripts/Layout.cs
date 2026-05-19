@@ -39,6 +39,51 @@ namespace Poke.UI
         [SerializeField] private float              m_innerSpacing;
         [SerializeField] private bool               m_ignoreChildScale;
 
+        #region Properties
+        public Margins Padding {
+            get => m_padding;
+            set {
+                m_padding = value;
+                SetDirty();
+            }
+        }
+        public LayoutDirection Direction {
+            get => m_direction;
+            set {
+                m_direction = value;
+                SetDirty();
+            }
+        }
+        public Justification JustifyContent {
+            get => m_justifyContent;
+            set {
+                m_justifyContent = value;
+                SetDirty();
+            }
+        }
+        public Alignment AlignContent {
+            get => m_alignContent;
+            set {
+                m_alignContent = value;
+                SetDirty();
+            }
+        }
+        public float InnerSpacing {
+            get => m_innerSpacing;
+            set {
+                m_innerSpacing = value;
+                SetDirty();
+            }
+        }
+        public bool IgnoreChildScale {
+            get => m_ignoreChildScale;
+            set {
+                m_ignoreChildScale = value;
+                SetDirty();
+            }
+        }
+        #endregion
+        
         public int ChildCount =>            _children?.Count ?? 0;
         public Vector2Int GrowChildCount => _growChildCount;
         

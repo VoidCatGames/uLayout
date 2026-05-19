@@ -62,8 +62,10 @@ namespace Poke.UI
             EditorGUILayout.PropertyField(_ignoreChildScale);
 
             if(serializedObject.hasModifiedProperties) {
-                _layout.SetDirty();
                 serializedObject.ApplyModifiedProperties();
+                foreach(var obj in serializedObject.targetObjects) {
+                    (obj as Layout).SetDirty();
+                }
             }
             
             EditorGUILayout.Space();

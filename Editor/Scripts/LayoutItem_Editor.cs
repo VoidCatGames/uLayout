@@ -49,8 +49,12 @@ namespace Poke.UI
             GUI.enabled = true;
 
             if(serializedObject.hasModifiedProperties) {
-                _item.SetDirty();
                 serializedObject.ApplyModifiedProperties();
+                
+                foreach(var obj in serializedObject.targetObjects) {
+                    (obj as LayoutItem).SetDirty();
+                }
+                
                 EditorApplication.QueuePlayerLoopUpdate();
             }
         }
