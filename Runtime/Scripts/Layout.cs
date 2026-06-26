@@ -30,6 +30,8 @@ namespace Poke.UI
         #if UNITY_EDITOR
         public static List<Layout> RefreshedThisFrame = new();
         #endif
+
+        public event Action OnLayoutChanged;
         
         [Header("Layout")]
         [SerializeField] private Margins            m_padding;
@@ -419,6 +421,8 @@ namespace Poke.UI
                 Log("SetLayoutVertical");
                 GrowChildren(RectTransform.Axis.Vertical);
                 VerticalLayout();
+                
+                OnLayoutChanged?.Invoke();
             }
 
             _dirty = false;
@@ -1085,10 +1089,10 @@ namespace Poke.UI
             for(int i = 0; i < childCount; i++) {
                 RectTransform rt = transform.GetChild(i).GetComponent<RectTransform>();
                 if (rt == null) continue;
-
-                Log($"Adding child \"{rt.name}\" - size: {rt.rect.size}");
                 
                 LayoutItem li = rt.GetComponent<LayoutItem>();
+                
+                Log($"Adding child \"{rt.name}\" - size: {rt.rect.size}, layoutitem: {li != null}");
                 
                 _children.Add(
                     new ChildInfo {

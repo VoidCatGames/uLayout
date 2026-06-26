@@ -1,4 +1,12 @@
-﻿## [1.6.3] - 2026-05-19
+﻿## [1.6.4] - 2026-06-26
+
+### Added
+- Added `OnLayoutChanged` event to `Layout`, which is useful for waiting for the layout to complete before showing procedural content
+
+### Changed
+- Extra detail in `Layout` logging
+
+## [1.6.3] - 2026-05-19
 
 ### Added
 - Added public properties for `Layout` fields (padding, direction, justify/align content, etc) - shoutout @IbrahimOezhan
